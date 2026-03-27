@@ -226,9 +226,9 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center text-gray-700 relative overflow-hidden scroll-smooth font-sans pb-20">
       
       {/* Fundos e Overlays */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-pink-100 via-white to-pink-200" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-br from-pink-100 via-white to-pink-200" />
       <AnimatePresence>
-        {isCinemaMode && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }} className="fixed inset-0 bg-black/85 z-[100] pointer-events-none" />}
+        {isCinemaMode && <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1 }} className="fixed inset-0 bg-black/85 z-100 pointer-events-none" />}
       </AnimatePresence>
 
       {isUnlocked && <FloatingHearts />}
@@ -236,8 +236,8 @@ export default function Home() {
       {/* 🔐 TELA DE BLOQUEIO */}
       <AnimatePresence>
         {!isUnlocked && (
-          <motion.div key="lock-screen" exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }} transition={{ duration: 1 }} className="fixed inset-0 z-[200] flex flex-col items-center justify-center bg-gradient-to-br from-pink-200 via-white to-pink-100 p-6">
-            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="bg-white/50 backdrop-blur-xl p-8 rounded-[32px] border border-white/40 shadow-2xl flex flex-col items-center text-center max-w-sm w-full">
+          <motion.div key="lock-screen" exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }} transition={{ duration: 1 }} className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-linear-to-br from-pink-200 via-white to-pink-100 p-6">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="bg-white/50 backdrop-blur-xl p-8 rounded-4xl border border-white/40 shadow-2xl flex flex-col items-center text-center max-w-sm w-full">
               <div className="text-6xl mb-4">🔒</div>
               <h1 className={`text-4xl text-pink-500 mb-2 ${greatVibes.className}`}>Uma pergunta...</h1>
               <p className="text-gray-600 mb-6 font-medium">Quando a nossa história começou?</p>
@@ -254,7 +254,7 @@ export default function Home() {
       {isUnlocked && (
         <>
           {/* Botões Flutuantes */}
-          <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={toggleMute} className={`fixed top-6 right-6 z-[150] bg-white/60 backdrop-blur-md p-3 rounded-full shadow-md border border-white/40 text-xl hover:bg-pink-100 transition-all duration-300 ${isCinemaMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} onClick={toggleMute} className={`fixed top-6 right-6 z-150 bg-white/60 backdrop-blur-md p-3 rounded-full shadow-md border border-white/40 text-xl hover:bg-pink-100 transition-all duration-300 ${isCinemaMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             {isMuted ? '🔇' : '🔊'}
           </motion.button>
           <motion.button onClick={() => document.getElementById("timeline")?.scrollIntoView({ behavior: "smooth" })} className={`fixed bottom-8 right-8 bg-pink-500/80 backdrop-blur-sm text-white p-5 rounded-full shadow-lg z-50 border border-white/20 transition-opacity duration-500 ${isCinemaMode ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} animate={{ y: [0, 12, 0] }} transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }} whileHover={{ scale: 1.1, backgroundColor: "rgb(236 72 153)" }}>
@@ -269,7 +269,7 @@ export default function Home() {
             {isBirthday && !openLetter && (<motion.div initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className={`fixed bottom-24 z-50 cursor-pointer ${isCinemaMode ? 'hidden' : ''}`} onClick={() => setOpenLetter(true)} whileHover={{ scale: 1.1 }}><div className="w-40 h-28 bg-white/40 backdrop-blur-lg rounded-2xl shadow-xl flex items-center justify-center text-5xl border border-white/20">💌</div></motion.div>)}
           </AnimatePresence>
           <AnimatePresence>
-            {openLetter && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[150] p-6" onClick={() => setOpenLetter(false)}><motion.div initial={{ scale: 0.9, y: 50 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-white/60 backdrop-blur-xl rounded-[32px] p-8 max-w-lg text-base leading-relaxed overflow-y-auto max-h-[80vh] whitespace-pre-wrap border border-white/30 shadow-2xl text-gray-800 relative" onClick={(e) => e.stopPropagation()}><button className="absolute top-4 right-4 text-gray-500 hover:text-pink-500 text-xl" onClick={() => setOpenLetter(false)}>✕</button>{typedText}</motion.div></motion.div>)}
+            {openLetter && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-150 p-6" onClick={() => setOpenLetter(false)}><motion.div initial={{ scale: 0.9, y: 50 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-white/60 backdrop-blur-xl rounded-4xl p-8 max-w-lg text-base leading-relaxed overflow-y-auto max-h-[80vh] whitespace-pre-wrap border border-white/30 shadow-2xl text-gray-800 relative" onClick={(e) => e.stopPropagation()}><button className="absolute top-4 right-4 text-gray-500 hover:text-pink-500 text-xl" onClick={() => setOpenLetter(false)}>✕</button>{typedText}</motion.div></motion.div>)}
           </AnimatePresence>
 
           {/* Hero Section */}
@@ -284,7 +284,7 @@ export default function Home() {
               <h2 className={`text-4xl md:text-5xl text-pink-500 mb-6 ${greatVibes.className}`}>Nossa história começou há...</h2>
               <div className="flex flex-wrap justify-center gap-3 md:gap-4 text-gray-800 font-bold">
                 {[ { label: "Anos", value: timeTogether.years }, { label: "Meses", value: timeTogether.months }, { label: "Dias", value: timeTogether.days }, { label: "Horas", value: timeTogether.hours }, { label: "Minutos", value: timeTogether.minutes }, { label: "Segundos", value: timeTogether.seconds } ].map((item, idx) => (
-                  <div key={idx} className="bg-white/50 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20 shadow-sm flex flex-col items-center min-w-[70px] md:min-w-[90px]"><span className="text-2xl md:text-3xl text-pink-600 tabular-nums">{item.value}</span><span className="text-[10px] md:text-xs uppercase tracking-wider text-gray-500 mt-1">{item.label}</span></div>
+                  <div key={idx} className="bg-white/50 backdrop-blur-sm p-3 md:p-4 rounded-xl border border-white/20 shadow-sm flex flex-col items-center min-w-17.5 md:min-w-22.5"><span className="text-2xl md:text-3xl text-pink-600 tabular-nums">{item.value}</span><span className="text-[10px] md:text-xs uppercase tracking-wider text-gray-500 mt-1">{item.label}</span></div>
                 ))}
               </div>
               <p className="mt-6 text-sm text-gray-500 italic">Desde 15 de Novembro de 2025</p>
@@ -293,7 +293,7 @@ export default function Home() {
 
           {/* 🗺️ NOVO: NOSSO MAPA DE COORDENADAS (Opção 2) */}
           <section className="w-full flex justify-center py-12 px-6 z-20 relative">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/40 rounded-[32px] p-8 text-center w-full max-w-2xl border border-white/40 shadow-xl relative overflow-hidden">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/40 rounded-4xl p-8 text-center w-full max-w-2xl border border-white/40 shadow-xl relative overflow-hidden">
               <h2 className={`text-4xl md:text-5xl text-pink-500 mb-2 ${greatVibes.className}`}>A Distância Não Importa</h2>
               <p className="text-gray-600 mb-8 font-medium">De Limoeiro a Recife, nossos corações batem juntos.</p>
               
@@ -330,9 +330,9 @@ export default function Home() {
             <div className="relative border-l-4 border-pink-300 pl-10 space-y-20 max-w-xl">
               {photos.map((item, i) => (
                 <motion.div key={i} className="relative" initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.8, delay: i * 0.2 }}>
-                  <div className="absolute -left-[54px] top-2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white shadow-md z-10" />
-                  <motion.p className="font-bold text-lg text-gray-700 mb-4 max-w-[16rem] leading-tight break-words text-center bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/20">{item.title}</motion.p>
-                  <motion.div initial={{ rotate: item.rotate }} whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }} onClick={() => setSelectedImage(item.img)} className="backdrop-blur-lg bg-white/50 border border-white/30 rounded-[32px] p-5 shadow-xl cursor-pointer relative z-20 transition-all duration-300 ease-out"><img src={item.img} alt={item.title} className="rounded-2xl mb-2 w-full h-auto object-cover aspect-[4/3]" /><div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" /></motion.div>
+                  <div className="absolute -left-13.5 top-2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white shadow-md z-10" />
+                  <motion.p className="font-bold text-lg text-gray-700 mb-4 max-w-[16rem] leading-tight wrap-break-word text-center bg-white/40 backdrop-blur-sm p-3 rounded-xl border border-white/20">{item.title}</motion.p>
+                  <motion.div initial={{ rotate: item.rotate }} whileHover={{ rotate: 0, scale: 1.05, zIndex: 30 }} onClick={() => setSelectedImage(item.img)} className="backdrop-blur-lg bg-white/50 border border-white/30 rounded-4xl p-5 shadow-xl cursor-pointer relative z-20 transition-all duration-300 ease-out"><img src={item.img} alt={item.title} className="rounded-2xl mb-2 w-full h-auto object-cover aspect-4/3" /><div className="absolute inset-0 rounded-4xl bg-linear-to-tr from-white/10 to-transparent pointer-events-none" /></motion.div>
                 </motion.div>
               ))}
             </div>
@@ -340,12 +340,12 @@ export default function Home() {
 
           {/* Modal da Imagem */}
           <AnimatePresence>
-            {selectedImage && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-[150] p-4" onClick={() => setSelectedImage(null)}><motion.img src={selectedImage} alt="Imagem ampliada" initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="max-w-full max-h-[92vh] rounded-[32px] object-contain shadow-2xl border-4 border-white/20" /></motion.div>)}
+            {selectedImage && (<motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center z-150 p-4" onClick={() => setSelectedImage(null)}><motion.img src={selectedImage} alt="Imagem ampliada" initial={{ scale: 0.8 }} animate={{ scale: 1 }} className="max-w-full max-h-[92vh] rounded-4xl object-contain shadow-2xl border-4 border-white/20" /></motion.div>)}
           </AnimatePresence>
 
           {/* 🧩 SEÇÃO: QUEBRA-CABEÇA */}
           <section className="w-full flex justify-center py-16 px-6 z-20 relative">
-             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-[32px] p-8 md:p-10 text-center w-full max-w-2xl border border-white/40 shadow-xl flex flex-col items-center">
+             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-4xl p-8 md:p-10 text-center w-full max-w-2xl border border-white/40 shadow-xl flex flex-col items-center">
               <h2 className={`text-4xl text-pink-500 mb-6 ${greatVibes.className}`}>Um Desafio para Você</h2>
               <p className="text-gray-600 mb-8 max-w-md">Monte o quebra-cabeça clicando nas peças para revelar nossa foto especial!</p>
               {!puzzleStarted ? (
@@ -358,7 +358,7 @@ export default function Home() {
                         {tiles.map((tile, index) => { const isEmpty = tile === TILE_COUNT - 1; if (isEmpty) return <div key={`empty-${index}`} className="bg-transparent" />; const originalRow = Math.floor(tile / GRID_SIZE); const originalCol = tile % GRID_SIZE; const sizePercent = 100 * GRID_SIZE; return <motion.div key={`tile-${tile}`} layout transition={{ type: "spring", stiffness: 300, damping: 30 }} onClick={() => moveTile(index)} className="bg-cover bg-no-repeat cursor-pointer rounded-lg shadow border border-white/20 active:scale-95 transition-transform" style={{ backgroundImage: `url(${PUZZLE_PHOTO_URL})`, backgroundSize: `${sizePercent}% ${sizePercent}%`, backgroundPosition: `${(originalCol / (GRID_SIZE - 1)) * 100}% ${(originalRow / (GRID_SIZE - 1)) * 100}%` }} />; })}
                       </motion.div>
                     ) : (
-                      <motion.div key="puzzle-solved" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.5, type: 'spring', bounce: 0.4 }} className="flex flex-col items-center overflow-hidden"><div className="backdrop-blur-xl bg-white/60 p-4 rounded-3xl border-4 border-pink-300 shadow-2xl relative"><img src={PUZZLE_PHOTO_URL} alt="Foto Resolvida" className="rounded-xl w-[300px] h-[300px] object-cover" /><div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-pink-300/40 via-white/20 to-pink-300/40 animate-pulse -z-10" /></div><motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="mt-8 text-center"><h3 className={`text-5xl text-pink-600 ${greatVibes.className}`}>Parabéns!</h3><p className="text-xl text-gray-800 mt-3 font-medium">Você montou nossa foto! Ficou linda, né? 🥰</p></motion.div></motion.div>
+                      <motion.div key="puzzle-solved" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1, delay: 0.5, type: 'spring', bounce: 0.4 }} className="flex flex-col items-center overflow-hidden"><div className="backdrop-blur-xl bg-white/60 p-4 rounded-3xl border-4 border-pink-300 shadow-2xl relative"><img src={PUZZLE_PHOTO_URL} alt="Foto Resolvida" className="rounded-xl w-75 h-75 object-cover" /><div className="absolute -inset-2 rounded-3xl bg-linear-to-tr from-pink-300/40 via-white/20 to-pink-300/40 animate-pulse -z-10" /></div><motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2 }} className="mt-8 text-center"><h3 className={`text-5xl text-pink-600 ${greatVibes.className}`}>Parabéns!</h3><p className="text-xl text-gray-800 mt-3 font-medium">Você montou nossa foto! Ficou linda, né? 🥰</p></motion.div></motion.div>
                     )}
                   </AnimatePresence>
                 </div>
@@ -368,7 +368,7 @@ export default function Home() {
 
           {/* 💖 GERADOR DE MOTIVOS */}
           <section className="w-full flex justify-center py-16 px-6 z-20 relative">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-[32px] p-10 text-center w-full max-w-2xl border border-white/40 shadow-xl flex flex-col items-center">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-4xl p-10 text-center w-full max-w-2xl border border-white/40 shadow-xl flex flex-col items-center">
               <h2 className={`text-4xl text-pink-500 mb-6 ${greatVibes.className}`}>Por que eu te amo?</h2>
               <button onClick={gerarNovoMotivo} className="bg-pink-500 hover:bg-pink-600 text-white font-semibold py-4 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center gap-2 mb-8"><span>Descobrir um motivo</span><span className="text-xl">✨</span></button>
               <AnimatePresence mode="wait">{motivoAtual && (<motion.div key={motivoAtual} initial={{ opacity: 0, y: 10, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: -10, scale: 0.95 }} transition={{ duration: 0.4 }} className="bg-white/60 backdrop-blur-md p-6 rounded-2xl border border-pink-200 shadow-inner w-full relative"><span className="text-4xl text-pink-300 absolute top-2 left-4 font-serif">"</span><p className="text-lg md:text-xl text-gray-700 italic font-medium px-6 py-2">{motivoAtual}</p><span className="text-4xl text-pink-300 absolute -bottom-2.5 right-4 font-serif">"</span></motion.div>)}</AnimatePresence>
@@ -377,14 +377,14 @@ export default function Home() {
 
           {/* 🎈 BALÕES SURPRESA */}
           <section className="w-full flex justify-center py-16 px-6 z-20 relative">
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-[32px] p-8 md:p-10 text-center w-full max-w-4xl border border-white/40 shadow-xl flex flex-col items-center relative">
+            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/30 rounded-4xl p-8 md:p-10 text-center w-full max-w-4xl border border-white/40 shadow-xl flex flex-col items-center relative">
               <h2 className={`text-4xl md:text-5xl text-pink-500 mb-8 ${greatVibes.className}`}>Estoure para uma surpresa! 🎈</h2>
-              <div className="flex flex-wrap justify-center gap-6 relative min-h-[160px] w-full items-center">
+              <div className="flex flex-wrap justify-center gap-6 relative min-h-40 w-full items-center">
                 {BALOES_FRASES.map((palavra, index) => (
                   <div key={index} className="relative w-24 h-32 flex items-center justify-center">
                     <AnimatePresence mode="popLayout">
                       {!poppedBalloons[index] ? (
-                        <motion.div key={`balloon-${index}`} initial={{ scale: 1, y: 0, opacity: 1 }} exit={{ scale: 1.6, y: -30, opacity: 0, filter: 'blur(5px)' }} transition={{ duration: 0.3, ease: 'easeOut' }} whileHover={{ y: -10, scale: 1.1, transition: { repeat: Infinity, repeatType: 'reverse', duration: 0.6 } }} onClick={() => popBalloon(index)} className={`w-24 h-32 bg-gradient-to-b from-pink-300 to-pink-500 rounded-full shadow-lg cursor-pointer flex flex-col items-center justify-center border-4 border-white relative`}><div className="text-white text-5xl">🎈</div>{[...Array(5)].map((_, i) => (<motion.span key={i} className="absolute text-xl opacity-0" animate={poppedBalloons[index] ? { opacity: [1, 0], y: [-20, -100], x: [-10, 10, -10], transition: { duration: 1, delay: i * 0.1 } } : {}}>💖</motion.span>))}</motion.div>
+                        <motion.div key={`balloon-${index}`} initial={{ scale: 1, y: 0, opacity: 1 }} exit={{ scale: 1.6, y: -30, opacity: 0, filter: 'blur(5px)' }} transition={{ duration: 0.3, ease: 'easeOut' }} whileHover={{ y: -10, scale: 1.1, transition: { repeat: Infinity, repeatType: 'reverse', duration: 0.6 } }} onClick={() => popBalloon(index)} className={`w-24 h-32 bg-linear-to-b from-pink-300 to-pink-500 rounded-full shadow-lg cursor-pointer flex flex-col items-center justify-center border-4 border-white relative`}><div className="text-white text-5xl">🎈</div>{[...Array(5)].map((_, i) => (<motion.span key={i} className="absolute text-xl opacity-0" animate={poppedBalloons[index] ? { opacity: [1, 0], y: [-20, -100], x: [-10, 10, -10], transition: { duration: 1, delay: i * 0.1 } } : {}}>💖</motion.span>))}</motion.div>
                       ) : (
                         <motion.div key={`word-${index}`} initial={{ opacity: 0, y: 20, scale: 0.8 }} animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ delay: 0.4, type: 'spring', stiffness: 300, damping: 20 }} className="bg-white/70 backdrop-blur-sm p-4 rounded-xl border-2 border-pink-300 shadow-md text-center"><span className="text-xl md:text-2xl font-bold text-gray-800 uppercase tracking-wider">{palavra}</span></motion.div>
                       )}
@@ -398,7 +398,7 @@ export default function Home() {
 
           {/* 🔒 NOVO: CÁPSULA DO TEMPO (Opção 3) */}
           <section className="w-full flex justify-center py-16 px-6 z-20 relative">
-             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/40 rounded-[32px] p-8 md:p-12 text-center w-full max-w-2xl border border-white/40 shadow-2xl flex flex-col items-center">
+             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="backdrop-blur-lg bg-white/40 rounded-4xl p-8 md:p-12 text-center w-full max-w-2xl border border-white/40 shadow-2xl flex flex-col items-center">
               <h2 className={`text-4xl md:text-5xl text-pink-500 mb-4 ${greatVibes.className}`}>Cápsula do Tempo ⏳</h2>
               <p className="text-gray-600 mb-8 max-w-md">Uma surpresa guardada a sete chaves para o nosso aniversário de 1 ano de namoro.</p>
               
@@ -409,7 +409,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 className="bg-white/80 backdrop-blur-xl border-4 border-pink-300 p-8 rounded-3xl shadow-[0_10px_40px_rgba(236,72,153,0.3)] cursor-pointer flex flex-col items-center relative overflow-hidden group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-pink-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-pink-100 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <span className="text-7xl mb-4 relative z-10">🗃️</span>
                 <span className="text-2xl font-bold text-gray-800 relative z-10">Tente Abrir</span>
                 <div className="mt-4 bg-pink-100 px-4 py-1 rounded-full text-pink-600 text-sm font-semibold border border-pink-200">
@@ -428,8 +428,8 @@ export default function Home() {
           {/* Modal da Cápsula do Tempo (Caso chegue a data) */}
           <AnimatePresence>
             {openCapsuleMessage && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-[200] p-6" onClick={() => setOpenCapsuleMessage(false)}>
-                <motion.div initial={{ scale: 0.8, y: 50 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0 }} className="bg-white/90 backdrop-blur-xl rounded-[32px] p-8 max-w-lg w-full text-center border-4 border-pink-400 shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-200 p-6" onClick={() => setOpenCapsuleMessage(false)}>
+                <motion.div initial={{ scale: 0.8, y: 50 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0 }} className="bg-white/90 backdrop-blur-xl rounded-4xl p-8 max-w-lg w-full text-center border-4 border-pink-400 shadow-2xl relative" onClick={(e) => e.stopPropagation()}>
                   <button className="absolute top-4 right-4 text-gray-400 hover:text-pink-500 text-2xl" onClick={() => setOpenCapsuleMessage(false)}>✕</button>
                   <h2 className={`text-5xl text-pink-500 mb-6 ${greatVibes.className}`}>Feliz Aniversário de Namoro!</h2>
                   <p className="text-gray-700 text-lg leading-relaxed font-medium">
@@ -443,9 +443,9 @@ export default function Home() {
           </AnimatePresence>
 
           {/* 🎬 VÍDEO COM MODO CINEMA */}
-          <section id="video-section" className={`w-full flex justify-center py-16 px-6 relative transition-all duration-1000 ${isCinemaMode ? 'z-[110]' : 'z-20'}`}>
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className={`backdrop-blur-xl bg-white/40 p-6 md:p-8 rounded-[32px] border shadow-2xl max-w-full transition-colors duration-1000 ${isCinemaMode ? 'border-pink-500/50 shadow-[0_0_50px_rgba(236,72,153,0.3)] bg-black/50' : 'border-white/30'}`}>
-              <video controls onPlay={handleVideoPlay} onPause={handleVideoPause} onEnded={handleVideoPause} className="w-[36rem] max-w-full rounded-2xl shadow-inner border-2 border-white/20">
+          <section id="video-section" className={`w-full flex justify-center py-16 px-6 relative transition-all duration-1000 ${isCinemaMode ? 'z-110' : 'z-20'}`}>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className={`backdrop-blur-xl bg-white/40 p-6 md:p-8 rounded-4xl border shadow-2xl max-w-full transition-colors duration-1000 ${isCinemaMode ? 'border-pink-500/50 shadow-[0_0_50px_rgba(236,72,153,0.3)] bg-black/50' : 'border-white/30'}`}>
+              <video controls onPlay={handleVideoPlay} onPause={handleVideoPause} onEnded={handleVideoPause} className="w-xl max-w-full rounded-2xl shadow-inner border-2 border-white/20">
                 <source src="/Lv6.mp4" type="video/mp4" />
                 Seu navegador não suporta a tag de vídeo.
               </video>
@@ -453,7 +453,7 @@ export default function Home() {
           </section>
 
           {/* CONTAGEM FINAL */}
-          <section id="message-section" className="w-full flex justify-center pt-16 px-6 z-20 relative relative mb-20">
+          <section id="message-section" className="w-full flex justify-center pt-16 px-6 z-20 relative mb-20">
             <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="backdrop-blur-lg bg-white/50 rounded-[40px] p-10 md:p-12 text-center w-full max-w-3xl border border-white/30 shadow-2xl">
               {isBirthday ? (
                 <><h2 className={`text-6xl text-pink-500 mb-6 ${greatVibes.className}`}>HOJE É O DIA! 🎉</h2><p className="mt-4 text-xl text-gray-800 leading-relaxed">Você é a melhor coisa que já me aconteceu, eu sou eternamente grato por ter você! 💖</p></>
